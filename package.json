@@ -1,0 +1,28 @@
+{
+  "name": "turf-sum",
+  "version": "0.0.1",
+  "description": "turf sum module",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/morganherlocker/turf-sum.git"
+  },
+  "keywords": [
+    "turf",
+    "sum",
+    "stats",
+    "geojson"
+  ],
+  "author": "morganherlocker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/morganherlocker/turf-sum/issues"
+  },
+  "homepage": "https://github.com/morganherlocker/turf-sum",
+  "devDependencies": {
+    "tape": "^2.13.1"
+  }
+}
