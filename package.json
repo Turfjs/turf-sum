@@ -1,6 +1,6 @@
 {
   "name": "turf-sum",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "turf sum module",
   "main": "index.js",
   "scripts": {
