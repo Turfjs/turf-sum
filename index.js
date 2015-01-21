@@ -2,8 +2,7 @@ var ss = require('simple-statistics');
 var inside = require('turf-inside');
 
 /**
-* Takes a set of polygons, a set of points, and tag polygons with the sum
-* of point property values contained within.
+* Calculates the sum of a field for {@link Point} features within a set of {@link Polygon} features.
 *
 * @module turf/sum
 * @param {FeatureCollection} polygons a FeatureCollection of {@link Polygon} features
