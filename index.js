@@ -13,18 +13,36 @@ var inside = require('turf-inside');
 * with properties listed as `outField`
 * @example
 * var polygons = turf.featurecollection([
-*   turf.polygon([[[0,0],[10,0],[10,10],[0,10],[0,0]]]),
-*   turf.polygon([[[10,0],[20,10],[20,20], [20,0]]])]);
+*   turf.polygon([[
+*     [-87.990188, 43.026486],
+*     [-87.990188, 43.062115],
+*     [-87.913284, 43.062115],
+*     [-87.913284, 43.026486],
+*     [-87.990188, 43.026486]
+*   ]]),
+*   turf.polygon([[
+*     [-87.973709, 42.962452],
+*     [-87.973709, 43.014689],
+*     [-87.904014, 43.014689],
+*     [-87.904014, 42.962452],
+*     [-87.973709, 42.962452]
+*   ]])
+* ]);
 * var points = turf.featurecollection([
-*   turf.point(5,5, {population: 200}),
-*   turf.point(1,3, {population: 600}),
-*   turf.point(14,2, {population: 100}),
-*   turf.point(13,1, {population: 200}),
-*   turf.point(19,7, {population: 300})]);
-* var aggregated = turf.sum(polygons, points, 'population', 'sum');
-* //=polygons
-* //=points
-* //=aggregated
+*   turf.point(-87.974052, 43.049321, {population: 200}),
+*   turf.point(-87.957229, 43.037277, {population: 600}),
+*   turf.point(-87.931137, 43.048568, {population: 100}),
+*   turf.point(-87.963409, 42.99611, {population: 200}),
+*   turf.point(-87.94178, 42.974762, {population: 300})
+* ]);
+*
+* var aggregated = turf.sum(
+*   polygons, points, 'population', 'sum');
+*
+* var result = turf.featurecollection(
+*   points.features.concat(aggregated.features));
+*
+* //=result
 */
 module.exports = function(polyFC, ptFC, inField, outField){
   polyFC.features.forEach(function(poly){
