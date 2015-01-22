@@ -1,52 +1,72 @@
-turf-sum
-========
+# turf-sum
+
 [![build status](https://secure.travis-ci.org/Turfjs/turf-sum.png)](http://travis-ci.org/Turfjs/turf-sum)
 
-Calculates the sum value of a field for points within a set of polygons.
+turf sum module
 
-###Install
+
+### `turf.sum(polygons, points, inField, outField)`
+
+Calculates the sum of a field for Point features within a set of Polygon features.
+
+
+### Parameters
+
+| parameter  | type              | description                             |
+| ---------- | ----------------- | --------------------------------------- |
+| `polygons` | FeatureCollection | a FeatureCollection of Polygon features |
+| `points`   | FeatureCollection | a FeatureCollection of Point features   |
+| `inField`  | String            | the field in input data to analyze      |
+| `outField` | String            | the field in which to store results     |
+
+
+### Example
+
+```js
+var polygons = turf.featurecollection([
+  turf.polygon([[
+    [-87.990188, 43.026486],
+    [-87.990188, 43.062115],
+    [-87.913284, 43.062115],
+    [-87.913284, 43.026486],
+    [-87.990188, 43.026486]
+  ]]),
+  turf.polygon([[
+    [-87.973709, 42.962452],
+    [-87.973709, 43.014689],
+    [-87.904014, 43.014689],
+    [-87.904014, 42.962452],
+    [-87.973709, 42.962452]
+  ]])
+]);
+var points = turf.featurecollection([
+  turf.point([-87.974052, 43.049321], {population: 200}),
+  turf.point([-87.957229, 43.037277], {population: 600}),
+  turf.point([-87.931137, 43.048568], {population: 100}),
+  turf.point([-87.963409, 42.99611], {population: 200}),
+  turf.point([-87.94178, 42.974762], {population: 300})
+]);
+
+var aggregated = turf.sum(
+  polygons, points, 'population', 'sum');
+
+var result = turf.featurecollection(
+  points.features.concat(aggregated.features));
+
+//=result
+```
+
+## Installation
+
+Requires [nodejs](http://nodejs.org/).
 
 ```sh
-npm install turf-sum
+$ npm install turf-sum
 ```
 
-###Parameters
+## Tests
 
-|name|description|
-|---|---|
-|polys|featurecollection of polygons|
-|points|featurecollection of points|
-|inField|field to map|
-|outField|new field|
-
-###Usage
-
-```js
-sum(polyFC, ptFC, inField, outField)
-```
-
-###Example
-
-```js
-var size = require('turf-sum')
-var point = require('turf-point')
-var polygon = require('turf-polygon')
-var featurecollection = require('turf-featurecollection')
-
-
-var poly1 = polygon([[[0,0],[10,0],[10,10], [0,10]]])
-var poly2 = polygon([[[10,0],[20,10],[20,20], [20,0]]])
-var polyFC = featurecollection([poly1, poly2])
-var pt1 = point(1,1, {population: 500})
-var pt2 = point(1,3, {population: 400})
-var pt3 = point(14,2, {population: 600})
-var pt4 = point(13,1, {population: 500})
-var pt5 = point(19,7, {population: 200})
-var ptFC = featurecollection([pt1, pt2, pt3, pt4, pt5])
-
-var summed = sum(polyFC, ptFC, 'population', 'pop_sum')
-
-console.log(summed.features[0].properties.pop_sum) // 900
-console.log(summed.features[1].properties.pop_sum) // 1300
+```sh
+$ npm test
 ```
 
