@@ -1,4 +1,3 @@
-var ss = require('simple-statistics');
 var inside = require('turf-inside');
 
 /**
@@ -55,8 +54,16 @@ module.exports = function(polyFC, ptFC, inField, outField){
         values.push(pt.properties[inField]);
       }
     });
-    poly.properties[outField] = ss.sum(values);
+    poly.properties[outField] = sum(values);
   });
 
   return polyFC;
 };
+
+function sum(x) {
+    var value = 0;
+    for (var i = 0; i < x.length; i++) {
+        value += x[i];
+    }
+    return value;
+}

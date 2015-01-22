@@ -30,7 +30,6 @@
     "turf-polygon": "^0.1.1"
   },
   "dependencies": {
-    "simple-statistics": "^0.8.1",
     "turf-inside": "^0.1.4"
   }
 }
