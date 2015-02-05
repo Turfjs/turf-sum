@@ -12,35 +12,99 @@ var inside = require('turf-inside');
  * @return {FeatureCollection} a FeatureCollection of {@link Polygon} features
  * with properties listed as `outField`
  * @example
- * var polygons = turf.featurecollection([
- *   turf.polygon([[
- *     [-87.990188, 43.026486],
- *     [-87.990188, 43.062115],
- *     [-87.913284, 43.062115],
- *     [-87.913284, 43.026486],
- *     [-87.990188, 43.026486]
- *   ]]),
- *   turf.polygon([[
- *     [-87.973709, 42.962452],
- *     [-87.973709, 43.014689],
- *     [-87.904014, 43.014689],
- *     [-87.904014, 42.962452],
- *     [-87.973709, 42.962452]
- *   ]])
- * ]);
- * var points = turf.featurecollection([
- *   turf.point([-87.974052, 43.049321], {population: 200}),
- *   turf.point([-87.957229, 43.037277], {population: 600}),
- *   turf.point([-87.931137, 43.048568], {population: 100}),
- *   turf.point([-87.963409, 42.99611], {population: 200}),
- *   turf.point([-87.94178, 42.974762], {population: 300})
- * ]);
+ * var polygons = {
+ *   "type": "FeatureCollection",
+ *   "features": [
+ *     {
+ *       "type": "Feature",
+ *       "properties": {},
+ *       "geometry": {
+ *         "type": "Polygon",
+ *         "coordinates": [[
+ *           [-87.990188, 43.026486],
+ *           [-87.990188, 43.062115],
+ *           [-87.913284, 43.062115],
+ *           [-87.913284, 43.026486],
+ *           [-87.990188, 43.026486]
+ *         ]]
+ *       }
+ *     }, {
+ *       "type": "Feature",
+ *       "properties": {},
+ *       "geometry": {
+ *         "type": "Polygon",
+ *         "coordinates": [[
+ *           [-87.973709, 42.962452],
+ *           [-87.973709, 43.014689],
+ *           [-87.904014, 43.014689],
+ *           [-87.904014, 42.962452],
+ *           [-87.973709, 42.962452]
+ *         ]]
+ *       }
+ *     }
+ *   ]
+ * };
+ * var points = {
+ *   "type": "FeatureCollection",
+ *   "features": [
+ *     {
+ *       "type": "Feature",
+ *       "properties": {
+ *         "population": 200
+ *       },
+ *       "geometry": {
+ *         "type": "Point",
+ *         "coordinates": [-87.974052, 43.049321]
+ *       }
+ *     }, {
+ *       "type": "Feature",
+ *       "properties": {
+ *         "population": 600
+ *       },
+ *       "geometry": {
+ *         "type": "Point",
+ *         "coordinates": [-87.957229, 43.037277]
+ *       }
+ *     }, {
+ *       "type": "Feature",
+ *       "properties": {
+ *         "population": 100
+ *       },
+ *       "geometry": {
+ *         "type": "Point",
+ *         "coordinates": [-87.931137, 43.048568]
+ *       }
+ *     }, {
+ *       "type": "Feature",
+ *       "properties": {
+ *         "population": 200
+ *       },
+ *       "geometry": {
+ *         "type": "Point",
+ *         "coordinates": [-87.963409, 42.99611]
+ *       }
+ *     }, {
+ *       "type": "Feature",
+ *       "properties": {
+ *         "population": 300
+ *       },
+ *       "geometry": {
+ *         "type": "Point",
+ *         "coordinates": [-87.94178, 42.974762]
+ *       }
+ *     }
+ *   ]
+ * };
  *
  * var aggregated = turf.sum(
  *   polygons, points, 'population', 'sum');
  *
- * var result = turf.featurecollection(
- *   points.features.concat(aggregated.features));
+ * var resultFeatures = points.features.concat(
+ *   aggregated.features);
+ * var result = {
+ *   "type": "FeatureCollection",
+ *   "features": resultFeatures
+ * };
  *
  * //=result
  */
