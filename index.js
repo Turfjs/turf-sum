@@ -1,15 +1,15 @@
 var inside = require('turf-inside');
 
 /**
- * Calculates the sum of a field for {@link Point} features within a set of {@link Polygon} features.
+ * Calculates the sum of a field for points within a set of polygons.
  *
  * @module turf/sum
  * @category aggregation
- * @param {FeatureCollection} polygons a FeatureCollection of {@link Polygon} features
- * @param {FeatureCollection} points a FeatureCollection of {@link Point} features
+ * @param {FeatureCollection<Polygon>} polygons input polygons
+ * @param {FeatureCollection<Point>} points input points
  * @param {String} inField the field in input data to analyze
  * @param {String} outField the field in which to store results
- * @return {FeatureCollection} a FeatureCollection of {@link Polygon} features
+ * @return {FeatureCollection<Polygon>} polygons
  * with properties listed as `outField`
  * @example
  * var polygons = {
